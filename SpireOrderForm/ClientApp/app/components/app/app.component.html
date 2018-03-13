@@ -1,10 +1,51 @@
-<div class='container-fluid'>
-    <div class='row'>
-        <div class='col-sm-3'>
-            <nav-menu></nav-menu>
-        </div>
-        <div class='col-sm-9 body-content'>
-            <router-outlet></router-outlet>
-        </div>
-    </div>
+<div class="container body-content">
+   <div class="panel panel-default">
+      <div class="panel-heading">
+         <h3>Spire SPc5 Order Form</h3>
+      </div>
+      <div class="panel-body">
+         <div class="form-group">
+            <label>Company Name</label>
+            <input class="form-control" type="text"
+            name="companyName"
+            [(ngModel)]="companyName"
+            (keyup)="onCompanyNameKeyUp($event)"
+            autocomplete="off">
+            <div *ngIf="!companyIsSelected && companyMatches?.length" class="dropdown-options">
+               <div *ngFor="let match of companyMatches" 
+               class="dropdown-option"
+               (click)="onCompanySelected(match)">{{match.name}}</div>
+               <!-- <div *ngFor="let match of matchedCompanyNames">{{match}}</div> -->
+            </div>
+         </div>
+         <form *ngIf="companyIsSelected" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+               <label>Quantity</label>
+               <input class="form-control width-sm" type="number" name="orderQuantity"
+                     [(ngModel)]="orderQuantity">
+            </div>
+            <button class="btn btn-primary" type="submit">Place Order</button>
+         </form>
+         <div *ngIf="companyOrders?.length" class="order-section">
+            <h4>Orders</h4>
+            <table class="table table-striped">
+               <thead>
+                  <tr>
+                     <th>Company</th>
+                     <th>Order Date</th>
+                     <th>Quantity</th>
+                  </tr>
+               </thead>
+               <tbody>
+                  <tr *ngFor="let order of companyOrders">
+                     <td>{{order.companyName}}</td>
+                     <td>{{order.orderDate | date:'medium'}}</td>
+                     <td>{{order.quantity}}</td>
+                  </tr>
+               </tbody>
+            </table>
+         </div>
+      </div>
+   </div>
 </div>
+    

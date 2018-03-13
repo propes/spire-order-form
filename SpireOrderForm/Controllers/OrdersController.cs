@@ -22,7 +22,7 @@ public class OrdersController: Controller
     }
 
     [HttpPost("Create")]
-    public Order CreateOrder(Order order)
+    public Order CreateOrder([FromBody] Order order)
     {
         return _orderRepository.CreateOrder(order);
     } 

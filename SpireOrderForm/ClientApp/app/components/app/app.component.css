@@ -1,6 +1,26 @@
-@media (max-width: 767px) {
-    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
-    .body-content {
-        padding-top: 50px;
-    }
+.body-content {
+    padding-top: 50px;
+}
+
+.width-sm {
+    width: 100px
+}
+
+.panel-heading h3 {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.order-section {
+    margin-top: 20px;
+}
+
+.dropdown-options {
+    padding: 2px 5px;
+    border: 1px solid #ccc;
+}
+
+.dropdown-option:hover {
+    background-color: #337ab7;
+    color: #fff
 }
